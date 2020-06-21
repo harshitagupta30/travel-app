@@ -3,7 +3,6 @@ import './styles/style.scss';
 import './styles/nav.scss';
 import './styles/footer.scss';
 
-
 /* Global Variables */
 const baseUrlLocation = 'https://api.opencagedata.com/geocode/v1/json';
 const baseUrlWeather = 'https://api.weatherbit.io/v2.0/current';
@@ -11,8 +10,7 @@ const apiKeyLocation = 'e21fd36ca7df46e194159bc575d50e08'; // Personal API Key f
 const apiKeyWeather = '62596058ff9e436291faa2134f2308f6';
 //https://pixabay.com/api/?key=17136304-c1a68e17b3a73635b5ab150c1&q=yellow+flowers&image_type=photo
 
-const generateBtn = document.getElementById('generate');
-generateBtn.addEventListener('click', performAction);
+document.getElementById('button_search').addEventListener('click', performAction);
 
 /* Function called by event listener */
 function performAction(e) {

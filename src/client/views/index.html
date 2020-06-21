@@ -27,22 +27,20 @@
         </nav>
         <section id="top-post">
             <div class="text-gradient">
-                <form>
+                <div class="">
                     <div class="">
-                        <div class="">
-                            <input type="text" placeholder="Destination" name="destination" required>
-                        </div>
-                        <div class="">
-                            <input type="text" placeholder="Leaving on" name="departure" required>
-                        </div>
-                        <div class="">
-                            <input type="text" placeholder="Returning on" name="arrival" required>
-                        </div>
-                        <div class="">
-                            <input type="submit" value="Submit">
-                        </div>
+                        <input type="text" placeholder="Destination" id="destination" required>
                     </div>
-                </form>
+                    <div class="">
+                        <input type="date" placeholder="Leaving on" id="date_start" required>
+                    </div>
+                    <div class="">
+                        <input type="date" placeholder="Returning on" id="date_end" required>
+                    </div>
+                    <div class="">
+                        <input type="button" id="button_search" value="Search">
+                    </div>
+                </div>
             </div>
         </section>
         <section id="newsletter">
