@@ -7,6 +7,7 @@ module.exports = {
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
+    target: 'node',
     stats: 'verbose',
     output: {
         libraryTarget: 'var',
@@ -16,18 +17,22 @@ module.exports = {
         rules: [{
                 test: '/\.js$/',
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                loader: 'babel-loader'
             },
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
-            }
+            },
+            {
+                test: /\.(jpg|png|svg|jpg|gif)$/,
+                loader: 'file-loader'
+            },
         ]
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/views/index.html",
-            filename: "./index.html",
+            template: './src/client/views/index.html',
+            filename: './index.html',
         }),
         new CleanWebpackPlugin({
             // Simulate the removal of files

@@ -1,93 +1,140 @@
 body {
     background: #fffff8;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
 }
 
-#app {
-    display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
+#parent-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+    justify-content: space-between;
     height: 100vh;
-    background: #f23557;
-    color: #f0d43a;
+}
+
+#top-post {
+    grid-area: top-post;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../media/tree.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-}
-
-.entry {
-    background: rgba(59, 74, 107, .4);
+    align-items: center;
+    color: #fffaf0;
 }
 
 
-/*  Basic Styling To Override Default For Basic HTML Elements */
+/* tile styling */
 
-label {
-    display: block;
-    font-size: 27px;
+.text-gradient {
+    background-color: rgba(0, 0, 0, 0.5);
+    // min-width: 60%;
+    max-width: 500px;
+    padding: 10px 20px;
+    margin: 20px;
+    text-align: center;
+    border-radius: 2px;
 }
 
-input {
-    display: block;
-    height: 60px;
-    width: 320px;
-    background: #22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
-}
-
-button {
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
-    box-shadow: 2px 4px 5px #444;
-}
-
-h1 {
-    font-size: 36px;
-}
-
-textarea {
-    background: #22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-}
-
-
-/* Reset style for HTML element on active to have no border*/
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
+.link {
     outline: none;
+    text-decoration: none;
+    color: #fffaf0;
+}
+
+.link:visited {
+    color: #fffaf0;
+}
+
+.link:hover {
+    color: #F6AA1C;
+}
+
+.post-info {
+    text-align: center;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .post h4 {
+        font-size: 1.5em;
+    }
+    .post .post-info {
+        font-size: 0.8em;
+    }
+    .text-gradient {
+        padding: 5px 15px;
+        margin: 5px;
+    }
 }
 
 
-/* Style for Placeholder Text*/
+/* newsletter */
 
-::placeholder {
-    /* Firefox, Chrome, Opera */
-    color: #f0d43a;
-    font-family: 'Oswald', sans-serif;
+#newsletter {
+    grid-area: newsletter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-:-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: #f0d43a;
-    font-family: 'Oswald', sans-serif;
+.newsletter-container {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 5px;
 }
 
-::-ms-input-placeholder {
-    /* Microsoft Edge */
-    color: #f0d43a;
-    font-family: 'Oswald', sans-serif;
+.newsletter-element {
+    width: 30%;
+}
+
+input[type=text],
+input[type=submit] {
+    text-align: center;
+    width: 100%;
+    padding: 12px;
+    margin: 8px 5px;
+    border: 1px solid #fffaf0;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    font-size: 1.1em;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #e54b4b;
+    border: 2px solid #e54b4b;
+    color: #fffaf0;
+    transition: all 0.3s;
+    border: none;
+}
+
+input[type=submit]:hover {
+    background-color: transparent;
+    border: 2px solid #e54b4b;
+    color: #e54b4b;
+    transform: scale(0.9);
+}
+
+@media (min-width: 600px) and (max-width: 780px) {
+    .newsletter-container {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+    }
+    .newsletter-element {
+        width: 40%;
+    }
+    input[type=submit] {
+        font-size: 0.9em;
+    }
 }
