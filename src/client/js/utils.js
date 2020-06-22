@@ -1,9 +1,10 @@
 const getDestination = () => {
 
     let destination = document.getElementById('destination').value;
-    destination = destination.toLowerCase();
-    destination = destination[0].toUpperCase + destination.slice(1);
-
+    if (destination) {
+        destination = destination.toLowerCase();
+        destination = destination[0].toUpperCase() + destination.slice(1);
+    }
     return destination;
 }
 
@@ -11,7 +12,7 @@ const getStartingDate = () => {
 
     const startDate = document.getElementById('date_start').value.split('-');
 
-    return startDate.join('/');
+    return Date.parse(startDate);
 }
 
 const getReturnDate = () => {
