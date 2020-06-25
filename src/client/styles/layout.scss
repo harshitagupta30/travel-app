@@ -68,7 +68,7 @@ a {
 }
 
 a:visited {
-    color: #FF917E;
+    color: #e54b4b;
 }
 
 a:hover {
@@ -138,23 +138,23 @@ blockquote:first-letter {
 
 .btn-primary {
     background-color: transparent;
-    border: 2px solid #FF917E;
+    border: 2px solid #e54b4b;
     border-radius: 3px;
-    color: #FF917E;
+    color: #e54b4b;
     transition: all 0.3s;
 }
 
 .btn-primary:hover {
-    background-color: #FF917E;
-    border: 2px solid #FF917E;
+    background-color: #e54b4b;
+    border: 2px solid #e54b4b;
     border-radius: 3px;
     color: #fffaf0;
     transform: scale(0.9);
 }
 
 .btn-primary:active {
-    background-color: #FF917E;
-    border: 2px solid #FF917E;
+    background-color: #e54b4b;
+    border: 2px solid #e54b4b;
     border-radius: 3px;
     color: #fffaf0;
     transform: scale(0.9);

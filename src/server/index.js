@@ -25,14 +25,14 @@ const server = app.listen(port, () => {
     console.log(`server is listening on port: ${port}`); // Callback to debug
 });
 
-/* Place to store data */
-const trips = [];
-
 /* Routes */
 
 app.get('/', (req, res) => {
     res.status(200).send('./dist/index.html');
 });
+
+/* Place to store data */
+const trips = [];
 
 app.post('/save', (req, res, next) => {
     if (req.body !== '') {
@@ -49,3 +49,5 @@ app.post('/coordinates', requestPost.handleCoordinatesRequest);
 app.post('/forecast', requestPost.handleWeatherForecastRequest);
 
 app.post('/image', requestPost.handleImageRequest);
+
+module.exports = app;
