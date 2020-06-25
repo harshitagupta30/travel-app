@@ -8,28 +8,30 @@ import { getWeatherForecast, getGeoLocation, getImageUrl } from '../client/js/re
 const $ = require('jquery');
 
 const trip = {};
+const searchBtn = document.getElementById('button_search');
 
 /* Function called by event listener */
 const performAction = async(e) => {
     e.preventDefault();
 
     trip.destination = getDestination();
-
-    const geoLocation = await getGeoLocation(trip.destination);
-
-    trip.latitude = geoLocation.results[0].geometry.lat;
-    trip.longitude = geoLocation.results[0].geometry.lng;
-    trip.country = geoLocation.results[0].components.country;
-    trip.countryCode = geoLocation.results[0].components.country_code;
-
-    trip.weatherForecast = await getWeatherForecast(trip.latitude, trip.longitude);
-
     trip.startDate = getStartingDate();
     trip.endDate = getReturnDate();
-    trip.image = await getImageUrl(trip.destination, trip.country);
-    console.log('image url', await getImageUrl(trip.destination));
-
-    updateModal(trip);
+    console.log(trip.startDate > trip.endDate);
+    if (trip.destination !== '' && trip.startDate !== '' && trip.endDate !== '' && (trip.startDate < trip.endDate)) {
+        const geoLocation = await getGeoLocation(trip.destination);
+        trip.latitude = geoLocation.results[0].geometry.lat;
+        trip.longitude = geoLocation.results[0].geometry.lng;
+        trip.country = geoLocation.results[0].components.country;
+        trip.countryCode = geoLocation.results[0].components.country_code;
+        trip.weatherForecast = await getWeatherForecast(trip.latitude, trip.longitude);
+        trip.image = await getImageUrl(trip.destination, trip.country);
+        updateModal(trip);
+    } else if (trip.startDate > trip.endDate) {
+        alert('Return date should be after the start date');
+    } else {
+        alert('Please enter the destination, start date and return date');
+    }
 
 }
 
@@ -60,7 +62,8 @@ $('.close, .mask').on('click', () => {
     closeModal();
 });
 
-document.getElementById('button_search').addEventListener('click', performAction);
+
+searchBtn.addEventListener('click', performAction);
 document.getElementById('btn-cancel_modal').addEventListener('click', closeModal);
 document.getElementById('btn-save_trip').addEventListener('click', handleSave);
 $(document).keyup(function(e) {

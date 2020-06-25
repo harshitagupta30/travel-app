@@ -38,7 +38,6 @@ const updateModal = (trip) => {
     document.querySelector('.popover-modal').style.display = 'block';
     document.querySelector('.modal-header__text').innerText = `${trip.destination}, ${trip.country}`;
     document.querySelector('.destination__img').setAttribute('src', trip.image);
-    console.log('trip obj', trip);
     const tripStart = getTripDate(trip.startDate);
     const tripEnd = getTripDate(trip.endDate);
     const duration = countdown(trip.startDate, trip.endDate);
@@ -66,7 +65,6 @@ const updateModal = (trip) => {
                                                                 <span class="">${weather.forecastSummary}</span> 
                                                             </p>`;
     }
-    console.log(tripStart, tripEnd, daysLeft, weather);
 }
 
 const getTripDate = (date) => {
