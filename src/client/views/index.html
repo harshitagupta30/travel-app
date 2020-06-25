@@ -48,7 +48,7 @@
                     <img class="destination__img" src="" alt="Popular Image for Destination">
                 </div>
                 <div class="modal-body right-side">
-                    <p><b>Trip to:</b> <span class="destination"></span></p>
+                    <p><b>Trip to:</b> <span class="modal_destination"></span></p>
                     <p><b>Departure: </b> <span class="start_date"></span></p>
                     <p><b>Return:</b> <span class="end_date"></span></p>
                     <p><b>Duration:</b> <span class="duration"></span></p>
@@ -69,7 +69,7 @@
             <a href="https://www.linkedin.com/ "><i class="fab fa-linkedin-in "></i></a>
         </footer>
     </div>
-    <script>
+    <!-- <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js').then(registration => {
@@ -78,6 +78,15 @@
             });
         } else {
             console.log("Service Working not supported");
+        }
+    </script> -->
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
         }
     </script>
 </body>

@@ -43,7 +43,7 @@ const updateModal = (trip) => {
     const duration = countdown(trip.startDate, trip.endDate);
 
 
-    document.querySelector('.destination').innerHTML = `${trip.destination}, ${trip.country}`;
+    document.querySelector('.modal_destination').innerHTML = `${trip.destination}, ${trip.country}`;
     document.querySelector('.start_date').innerHTML = `${tripStart}`;
     document.querySelector('.end_date').innerHTML = `${tripEnd}`;
     document.querySelector('.duration').innerHTML = `${duration} days`;

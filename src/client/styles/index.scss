@@ -38,6 +38,13 @@ body {
     @media (min-width: 700px) {
         flex-direction: row;
     }
+    #destination {
+        text-align: center;
+        padding: 12px;
+        margin: 8px 5px;
+        border: 1px solid #fffaf0;
+        box-sizing: border-box;
+    }
 }
 
 

@@ -3,7 +3,7 @@ import { getDestination } from '../src/client/js/utils';
 test('should return Munich', () => {
     beforeEach(() => {
         document.body.innerHTML =
-            '<div id="destination">' + 'munich' + '</div>';
+            '<input type="text" id="destination">' + 'munich' + '</input>';
     });
     afterEach(() => {
         const destination = getCity();
