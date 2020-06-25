@@ -12,34 +12,28 @@
 
 <body>
     <div id="parent-container">
-        <nav>
-            <div id="title">
-                <div id="page-title">Travel Planner</div>
-            </div>
-            <ul id="menu">
-                <li class="item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="item">
-                    <a class="nav-link" href="saved-trips.html">Saved Trips</a>
-                </li>
-            </ul>
-        </nav>
-        <section id="top-post">
+        <header>
+            <nav>
+                <div id="title">
+                    <div id="page-title">Travel Planner</div>
+                </div>
+                <ul id="menu">
+                    <li class="item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="item">
+                        <a class="nav-link" href="saved-trips.html">Saved Trips</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <section id="content">
             <div class="text-gradient">
-                <div class="">
-                    <div class="">
-                        <input type="text" placeholder="Destination" id="destination" required>
-                    </div>
-                    <div class="">
-                        <input type="date" placeholder="Leaving on" id="date_start" required>
-                    </div>
-                    <div class="">
-                        <input type="date" placeholder="Returning on" id="date_end" required>
-                    </div>
-                    <div class="">
-                        <input type="button" id="button_search" value="Search">
-                    </div>
+                <div class="user-input-placeholder">
+                    <input type="text" placeholder="Destination" id="destination" required>
+                    <input type="date" placeholder="Start Date" id="date_start" required>
+                    <input type="date" placeholder="Return Date" id="date_end" required>
+                    <input type="submit" id="button_search" value="Search"></button>
                 </div>
             </div>
         </section>
@@ -47,41 +41,32 @@
             <div class="mask" role="dialog"></div>
             <div class="modal" role="alert">
                 <div class="modal-header">
-                    <img>
-                    <span></span>
+                    <h4 class="modal-header__text"></h4>
                     <button class="close" role="button">X</button>
                 </div>
-
-                <div class="left-side">
-
+                <div class="modal-body left-side">
+                    <img class="destination__img" src="" alt="Popular Image for Destination">
                 </div>
-                <div class="right-side">
-
+                <div class="modal-body right-side">
+                    <p class=""><b>Trip to:</b> <span class="destination"></span></p>
+                    <p class=""><b>Departure: </b> <span class="start_date"></span></p>
+                    <p class=""><b>Return:</b> <span class="end_date"></span></p>
+                    <p class=""><b>Duration:</b> <span class="duration"></span></p>
+                    <span class="trip_countdown"></span>
+                    <span class="trip_weather"></span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="btn-cancel_modal">Cancel</button>
+                    <button class="btn btn-secondary" id="btn-save_trip">Save Trip</button>
                 </div>
             </div>
         </div>
-        <section id="newsletter">
-            <form action="#">
-                <h5>Subscribe to our Newsletter</h5>
-                <div class="newsletter-container">
-                    <div class="newsletter-element">
-                        <input type="text" placeholder="Name" name="name" required>
-                    </div>
-                    <div class="newsletter-element">
-                        <input type="text" placeholder="Email address" name="mail" required>
-                    </div>
-                    <div class="newsletter-element">
-                        <input type="submit" value="Subscribe">
-                    </div>
-                </div>
-                <!-- newletter container -->
-            </form>
-        </section>
+
         <footer>
             <em>Made with love by Harshita Gupta, 2020.</em>
-            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/ "><i class="fab fa-facebook-f "></i></a>
+            <a href="https://twitter.com/ "><i class="fab fa-twitter "></i></a>
+            <a href="https://www.linkedin.com/ "><i class="fab fa-linkedin-in "></i></a>
         </footer>
     </div>
 </body>

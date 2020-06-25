@@ -1,3 +1,4 @@
+const $ = require('jquery');
 const getDestination = () => {
 
     let destination = document.getElementById('destination').value;
@@ -24,8 +25,8 @@ const getReturnDate = () => {
 
 const countdown = (startDate, endDate) => {
 
-    const start = new Date(startDate);
-    const end = new Date(endDate);
+    const start = Date.parse(startDate);
+    const end = Date.parse(endDate);
     const diffTime = Math.abs(end - start);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
@@ -33,11 +34,38 @@ const countdown = (startDate, endDate) => {
 }
 
 const updateModal = (trip) => {
+    $('.mask').addClass('active');
+    document.querySelector('.popover-modal').style.display = 'block';
+    document.querySelector('.modal-header__text').innerText = `${trip.destination}, ${trip.country}`;
+    document.querySelector('.destination__img').setAttribute('src', trip.image);
+    console.log('trip obj', trip);
     const tripStart = getTripDate(trip.startDate);
     const tripEnd = getTripDate(trip.endDate);
-    console.log(countdown(trip.startDate, trip.endDate));
-    const daysLeft = countdown(new Date(), trip.start);
-    const weather = getWeatherInfo(trip.weatherForecast, daysLeft, trip.startDate);
+    const duration = countdown(trip.startDate, trip.endDate);
+
+
+    document.querySelector('.destination').innerHTML = `${trip.destination}, ${trip.country}`;
+    document.querySelector('.start_date').innerHTML = `${tripStart}`;
+    document.querySelector('.end_date').innerHTML = `${tripEnd}`;
+    document.querySelector('.duration').innerHTML = `${duration} days`;
+
+    // Display the days left to trip
+    const daysLeft = countdown(new Date(), tripStart);
+    document.querySelector('.trip_countdown').innerHTML = `Your trip to ${trip.destination} is ${daysLeft} days away.`;
+    // Display weather info
+    const weather = getWeatherInfo(trip.weatherForecast, daysLeft, tripStart);
+    if (daysLeft < 7) {
+        document.querySelector('.trip_weather').innerHTML = `<p class=""><b>The current weather: </b> <br/>
+                                                                <span class="">Temperature: ${weather.temperature}&deg;F</span> <br/>
+                                                                <span class="">${weather.summary}</span> 
+                                                            </p>`;
+    } else {
+        document.querySelector('.trip_weather').innerHTML = `<p class=""><b>Weather forecast for then: </b> <br/>
+                                                                <span class="">High - ${weather.forecastTempMax}&deg;F</span> <br/>
+                                                                <span class="">Low - ${weather.forecastTempMin}&deg;F</span> <br/>
+                                                                <span class="">${weather.forecastSummary}</span> 
+                                                            </p>`;
+    }
     console.log(tripStart, tripEnd, daysLeft, weather);
 }
 
@@ -57,7 +85,8 @@ const getWeatherInfo = (weatherForecast, daysLeft, date) => {
     const weather = {
         temperature: 0,
         summary: '',
-        forecastTemp: 0,
+        forecastTempMax: 0,
+        forecastTempMin: 0,
         forecastSummary: ''
     };
 
@@ -71,7 +100,8 @@ const getWeatherInfo = (weatherForecast, daysLeft, date) => {
      */
     for (let i = 0; i < weatherForecast.daily.data.length; i++) {
         if (date >= weatherForecast.daily.data[i].time) {
-            weather.forecastTemp = weatherForecast.daily.data[i].temperatureHigh;
+            weather.forecastTempMax = weatherForecast.daily.data[i].temperatureMax;
+            weather.forecastTempMin = weatherForecast.daily.data[i].temperatureMin;
             weather.forecastSummary = weatherForecast.daily.data[i].summary;
             break;
         }
