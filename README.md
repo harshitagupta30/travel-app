@@ -26,6 +26,19 @@ All the scripts and dependencies are listed in the `package.json` file.
 
 Note: to get the data from the API, you will need to create a `.env` file which will store all the URLs and API keys of the used APIs.
 
+Here is the content of `.env` for testing purpose:
+
+```
+    DARKSKY_URL = https://api.darksky.net/forecast
+    DARKSKY_KEY = a44b6a01155bc9391c311378b6f5bcee
+    PIXABAY_URL = https://pixabay.com/api/
+    PIXABAY_KEY = 17136304-c1a68e17b3a73635b5ab150c1
+    OPENCAGEDATA_URL = https://api.opencagedata.com/geocode/v1/json
+    OPENCAGEDATA_KEY = e21fd36ca7df46e194159bc575d50e08
+
+```
+Will be deleted soon after the evaluation
+
 ## API
 
 We have used folllowing APIs:
