@@ -69,23 +69,12 @@
             <a href="https://www.linkedin.com/ "><i class="fab fa-linkedin-in "></i></a>
         </footer>
     </div>
-    <!-- <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js').then(registration => {
-                    console.log('SW registered successfuly: ', registration);
-                });
-            });
-        } else {
-            console.log("Service Working not supported");
-        }
-    </script> -->
     <script>
         // Check that service workers are supported
         if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js');
+                navigator.serviceWorker.register('./service-worker.js');
             });
         }
     </script>
