@@ -19,12 +19,13 @@
 .modal {
     display: grid;
     height: 100vh;
-    max-height: 420px;
+    max-height: 620px;
     grid-gap: 0;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     position: fixed;
     top: 0;
+    width: 100%;
     width: -webkit-fill-available;
     background: #fffff8;
     z-index: 100;
@@ -36,11 +37,13 @@
     @media (min-width: 500px) and (max-width: 700px) {
         grid-gap: 1em;
         grid-template-areas: 'header header''left right' 'footer footer';
+        height: 420px;
     }
     @media (min-width: 700px) {
         top: 50%;
         left: 50%;
         width: 500px;
+        height: 420px;
         margin-left: -300px;
         margin-top: -200px;
         grid-gap: 1em;
@@ -110,5 +113,4 @@
 .destination__img {
     height: 200px;
     width: 200px;
-    margin-top: 1em;
 }

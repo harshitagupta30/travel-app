@@ -4,7 +4,7 @@ import './styles/nav.scss';
 import './styles/modal.scss';
 import './styles/footer.scss';
 import { getDestination, getStartingDate, getReturnDate, countdown, updateModal } from '../client/js/utils.js';
-import { getWeatherForecast, getGeoLocation, getImageUrl, getCountryInfo } from '../client/js/request.js';
+import { getWeatherForecast, getGeoLocation, getImageUrl } from '../client/js/request.js';
 const $ = require('jquery');
 
 const trip = {};
@@ -22,14 +22,11 @@ const performAction = async(e) => {
     trip.country = geoLocation.results[0].components.country;
     trip.countryCode = geoLocation.results[0].components.country_code;
 
-    const countryInfo = getCountryInfo(trip.countryCode);
-    trip.countryFlag = countryInfo.flag;
-
     trip.weatherForecast = await getWeatherForecast(trip.latitude, trip.longitude);
 
     trip.startDate = getStartingDate();
     trip.endDate = getReturnDate();
-    trip.image = await getImageUrl(trip.destination);
+    trip.image = await getImageUrl(trip.destination, trip.country);
     console.log('image url', await getImageUrl(trip.destination));
 
     updateModal(trip);

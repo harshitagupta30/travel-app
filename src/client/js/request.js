@@ -15,12 +15,12 @@ async function getWeatherForecast(latitude, longitude) {
     }
 }
 
-async function getImageUrl(destination) {
+async function getImageUrl(destination, country) {
     try {
         const response = await fetch('http://localhost:8080/image', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ destination: destination })
+            body: JSON.stringify({ destination: destination, country: country })
         });
         if (response.ok) {
             const jsonRes = await response.json();
