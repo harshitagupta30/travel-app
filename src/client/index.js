@@ -3,12 +3,17 @@ import './styles/index.scss';
 import './styles/nav.scss';
 import './styles/modal.scss';
 import './styles/footer.scss';
-import { getDestination, getStartingDate, getReturnDate, countdown, updateModal } from '../client/js/utils.js';
+import { getDestination, getStartingDate, getReturnDate, countdown, updateModal, displaySavedTrip } from '../client/js/utils.js';
 import { getWeatherForecast, getGeoLocation, getImageUrl } from '../client/js/request.js';
 const $ = require('jquery');
 
 const trip = {};
+let trips = localStorage.getItem('trips') ? JSON.parse(localStorage.getItem('trips')) : [];
 const searchBtn = document.getElementById('button_search');
+const cancelBtn = document.getElementById('btn-cancel_modal');
+const saveTripBtn = document.getElementById('btn-save_trip');
+const deleteAllTripsBtn = document.getElementById('btn-delete_all');
+const createNewTripBtn = document.getElementById('btn-add_new_trip');
 
 /* Function called by event listener */
 const performAction = async(e) => {
@@ -17,7 +22,6 @@ const performAction = async(e) => {
     trip.destination = getDestination();
     trip.startDate = getStartingDate();
     trip.endDate = getReturnDate();
-    console.log(trip.startDate > trip.endDate);
     if (trip.destination !== '' && trip.startDate !== '' && trip.endDate !== '' && (trip.startDate < trip.endDate)) {
         const geoLocation = await getGeoLocation(trip.destination);
         trip.latitude = geoLocation.results[0].geometry.lat;
@@ -37,21 +41,9 @@ const performAction = async(e) => {
 
 const handleSave = async(e) => {
     e.preventDefault();
-
-    try {
-        const response = await fetch('http://localhost:8080/save', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ trip: trip })
-        });
-        if (response.ok) {
-            const jsonRes = await response.json();
-            console.log(jsonRes);
-            return jsonRes;
-        }
-    } catch (error) {
-        console.log(error);
-    }
+    trips.push(trip);
+    localStorage.setItem('trips', JSON.stringify(trips));
+    window.location.href = 'saved-trips.html';
 }
 
 const closeModal = () => {
@@ -62,12 +54,42 @@ $('.close, .mask').on('click', () => {
     closeModal();
 });
 
+if (searchBtn) {
+    searchBtn.addEventListener('click', performAction);
+}
 
-searchBtn.addEventListener('click', performAction);
-document.getElementById('btn-cancel_modal').addEventListener('click', closeModal);
-document.getElementById('btn-save_trip').addEventListener('click', handleSave);
+if (cancelBtn) {
+    cancelBtn.addEventListener('click', closeModal);
+}
+
+if (saveTripBtn) {
+    saveTripBtn.addEventListener('click', handleSave);
+}
+
+if (createNewTripBtn) {
+    createNewTripBtn.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+}
+
+if (deleteAllTripsBtn) {
+    deleteAllTripsBtn.addEventListener('click', () => {
+        localStorage.clear();
+        location.reload();
+    });
+}
+
 $(document).keyup(function(e) {
     if (e.keyCode == 27) {
         closeModal();
     }
 });
+
+if (window.location.href.includes('trips')) {
+    let trips = JSON.parse(window.localStorage.getItem('trips'));
+    if (trips) {
+        trips.forEach(trip => {
+            displaySavedTrip(trip);
+        });
+    }
+}

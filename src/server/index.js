@@ -31,19 +31,6 @@ app.get('/', (req, res) => {
     res.status(200).send('./dist/index.html');
 });
 
-/* Place to store data */
-const trips = [];
-
-app.post('/save', (req, res, next) => {
-    if (req.body !== '') {
-        const trip = req.body;
-        trips.push(trip);
-        res.status(201).send(trip);
-    } else {
-        res.status(400).json('Bad Request');
-    }
-});
-
 app.post('/coordinates', requestPost.handleCoordinatesRequest);
 
 app.post('/forecast', requestPost.handleWeatherForecastRequest);

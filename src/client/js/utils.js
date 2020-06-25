@@ -52,6 +52,11 @@ const updateModal = (trip) => {
     const daysLeft = countdown(new Date(), tripStart);
     document.querySelector('.trip_countdown').innerHTML = `Your trip to ${trip.destination} is ${daysLeft} days away.`;
     // Display weather info
+    showWeatherForecastElem(trip, daysLeft, tripStart);
+
+}
+
+const showWeatherForecastElem = (trip, daysLeft, tripStart) => {
     const weather = getWeatherInfo(trip.weatherForecast, daysLeft, tripStart);
     if (daysLeft < 7) {
         document.querySelector('.trip_weather').innerHTML = `<p class=""><b>The current weather: </b> <br/>
@@ -66,7 +71,6 @@ const updateModal = (trip) => {
                                                             </p>`;
     }
 }
-
 const getTripDate = (date) => {
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -107,4 +111,29 @@ const getWeatherInfo = (weatherForecast, daysLeft, date) => {
     return weather;
 }
 
-export { getDestination, getStartingDate, getReturnDate, countdown, updateModal };
+const displaySavedTrip = (trip) => {
+    const tripStart = getTripDate(trip.startDate);
+    const tripEnd = getTripDate(trip.endDate);
+    const duration = countdown(trip.startDate, trip.endDate);
+    const daysLeft = countdown(new Date(), tripStart);
+    const weather = getWeatherInfo(trip.weatherForecast, daysLeft, tripStart);
+    const section = document.createElement('section');
+
+    const div = document.createElement('div');
+    div.classList.add('trip');
+    div.innerHTML = `<div class="modal-body left-side">
+                        <img class="destination__img" src="${trip.image}" alt="Popular Image for Destination">
+                    </div>
+                    <div class="modal-body right-side">
+                        <p><b>Trip to:</b> <span class="destination">${trip.destination}</span></p>
+                        <p><b>Departure: </b> <span class="start_date">${tripStart}</span></p>
+                        <p><b>Return:</b> <span class="end_date">${tripEnd}</span></p>
+                        <p><b>Duration:</b> <span class="duration">${duration}</span></p>
+                        <span class="trip_countdown">Your trip to ${trip.destination} is ${daysLeft} days away.</span>
+                    </div>`;
+    section.appendChild(div);
+    document.querySelector('.saved-trips').appendChild(section);
+}
+
+
+export { getDestination, getStartingDate, getReturnDate, countdown, updateModal, displaySavedTrip };

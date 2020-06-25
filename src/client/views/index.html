@@ -19,10 +19,10 @@
                 </div>
                 <ul id="menu">
                     <li class="item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link selected" href="index.html">Home</a>
                     </li>
                     <li class="item">
-                        <a class="nav-link" href="saved-trips.html">Saved Trips</a>
+                        <a class="nav-link" href="./saved-trips.html">Saved Trips</a>
                     </li>
                 </ul>
             </nav>
@@ -30,9 +30,9 @@
         <section id="content">
             <div class="text-gradient">
                 <div class="user-input-placeholder">
-                    <input type="text" placeholder="Destination" id="destination" required>
-                    <input type="date" placeholder="Start Date" id="date_start" required>
-                    <input type="date" placeholder="Return Date" id="date_end" required>
+                    <input type="text" placeholder="Destination" id="destination" aria-label="Destination" required>
+                    <input type="date" placeholder="Start Date" id="date_start" aria-label="Date" required>
+                    <input type="date" placeholder="Return Date" id="date_end" aria-label="Date" required>
                     <input type="submit" id="button_search" value="Search"></button>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="modal" role="alert">
                 <div class="modal-header">
                     <h4 class="modal-header__text"></h4>
-                    <button class="close" role="button">X</button>
+                    <button class="close" role="button" aria-label="Close">X</button>
                 </div>
                 <div class="modal-body left-side">
                     <img class="destination__img" src="" alt="Popular Image for Destination">
@@ -69,7 +69,7 @@
             <a href="https://www.linkedin.com/ "><i class="fab fa-linkedin-in "></i></a>
         </footer>
     </div>
-    <!-- <script>
+    <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js').then(registration => {
@@ -79,7 +79,7 @@
         } else {
             console.log("Service Working not supported");
         }
-    </script> -->
+    </script>
 </body>
 
 </html>

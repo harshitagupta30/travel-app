@@ -43,20 +43,3 @@ The testing is done using Jest. To run test, enter the command
 `npm run test`. 
 
 ## Pages
-
-### Home page
-
-It is a single page web app. It has a single form input field that accepts an input(URL), then runs a check to make sure it is a valid URL. 
-![Homepage](https://github.com/harshitagupta30/evaluate-news-nlp/blob/master/images/img1.png)
-
-If it is not a valid URL, the following message will be displayed;
-
-![Invalid URL](https://github.com/harshitagupta30/evaluate-news-nlp/blob/master/images/img3.png)
-
-### API response
-
-If the url is valid, then an api call is performed and the result displayed on the page.
-
-![Result](https://github.com/harshitagupta30/evaluate-news-nlp/blob/master/images/img2.png)
-
-
