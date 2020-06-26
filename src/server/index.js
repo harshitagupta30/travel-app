@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.static('dist'));
 
 // Set up and Spin up the server
-const port = 8080;
+const port = process.env.NODE_ENV === 'test' ? 3001 : 3000;
 const server = app.listen(port, () => {
     console.log(`server is listening on port: ${port}`); // Callback to debug
 });

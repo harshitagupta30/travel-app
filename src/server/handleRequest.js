@@ -39,8 +39,7 @@ async function handleCoordinatesRequest(req, res, next) {
 }
 
 async function handleImageRequest(req, res, next) {
-    const destination = req.body.destination;
-    const country = req.body.country;
+    const { destination, country } = req.body;
     if (destination != ' ' || country !== ' ') {
         let endpoint = `${process.env.PIXABAY_URL}?key=${process.env.PIXABAY_KEY}&q=${destination}&image_type=photo`;
         try {
